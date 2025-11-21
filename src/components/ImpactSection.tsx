@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Recycle, Shield, Sparkles, Leaf, Droplet, Heart } from "lucide-react";
+import glassBottleWater from "@/assets/glass-bottle-water-droplets.jpg";
 
 const stats = [
   {
@@ -34,58 +35,64 @@ const benefits = [
   {
     icon: Recycle,
     title: "Tái sử dụng bền vững",
-    description: "Chai thủy tinh có thể thu hồi và tái sử dụng vô số lần, giảm thiểu rác thải nhựa và bảo vệ hệ sinh thái biển",
+    description:
+      "Chai thủy tinh có thể thu hồi và tái sử dụng vô số lần, giảm thiểu rác thải nhựa và bảo vệ hệ sinh thái biển",
   },
   {
     icon: Sparkles,
     title: "Chất lượng cao cấp",
-    description: "Thủy tinh không thấm, không chứa hóa chất, giữ nguyên độ tinh khiết và hương vị tự nhiên của nước",
+    description:
+      "Thủy tinh không thấm, không chứa hóa chất, giữ nguyên độ tinh khiết và hương vị tự nhiên của nước",
   },
   {
     icon: Shield,
     title: "An toàn tuyệt đối",
-    description: "Không chứa BPA, phthalates hay các chất độc hại từ nhựa, đảm bảo sức khỏe cho người tiêu dùng",
+    description:
+      "Không chứa BPA, phthalates hay các chất độc hại từ nhựa, đảm bảo sức khỏe cho người tiêu dùng",
   },
   {
     icon: Leaf,
     title: "Bảo vệ đại dương",
-    description: "Giảm lượng nhựa thải ra biển, góp phần bảo vệ hệ sinh thái và tạo ra tương lai xanh bền vững",
+    description:
+      "Giảm lượng nhựa thải ra biển, góp phần bảo vệ hệ sinh thái và tạo ra tương lai xanh bền vững",
   },
   {
     icon: Droplet,
     title: "Giữ nhiệt tốt",
-    description: "Thủy tinh duy trì nhiệt độ nước lâu hơn, mang lại trải nghiệm uống nước tốt nhất",
+    description:
+      "Thủy tinh duy trì nhiệt độ nước lâu hơn, mang lại trải nghiệm uống nước tốt nhất",
   },
   {
     icon: Heart,
     title: "Trách nhiệm xã hội",
-    description: "Thể hiện cam kết của doanh nghiệp với môi trường và sức khỏe cộng đồng",
+    description:
+      "Thể hiện cam kết của doanh nghiệp với môi trường và sức khỏe cộng đồng",
   },
 ];
 
 export function ImpactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  
+
   // Parallax scrolling for background
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   const glassY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100">
+    <section
+      ref={ref}
+      className="py-32 relative overflow-hidden bg-gradient-to-br from-cyan-50 via-blue-50 to-cyan-100"
+    >
       {/* Background image with parallax - glass bottle */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: bgY }}
-      >
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <div className="absolute inset-0 opacity-15">
-          <img 
-            src="https://images.unsplash.com/photo-1564473530128-2a52ee4d6ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbGFzcyUyMGJvdHRsZSUyMHdhdGVyJTIwZHJvcGxldHN8ZW58MXx8fHwxNjM2OTU4MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          <img
+            src={glassBottleWater}
             alt="Glass bottle with water"
             className="w-full h-[120%] object-cover"
           />
@@ -95,7 +102,7 @@ export function ImpactSection() {
       {/* Floating liquid glass blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, 80, 0],
             y: [0, -60, 0],
             scale: [1, 1.2, 1],
@@ -104,7 +111,7 @@ export function ImpactSection() {
           className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-cyan-300/20 to-blue-400/20 rounded-full blur-[120px]"
         />
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, -70, 0],
             y: [0, 80, 0],
             scale: [1, 1.3, 1],
@@ -152,22 +159,22 @@ export function ImpactSection() {
           <p className="tracking-[0.3em] uppercase mb-8 text-sm text-cyan-600">
             Glass Bottle Impact
           </p>
-          
+
           <h2 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-cyan-950">
             Tại sao chọn <br />
             <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-700 bg-clip-text text-transparent">
               chai thủy tinh?
             </span>
           </h2>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl text-cyan-800 max-w-3xl mx-auto leading-relaxed"
           >
-            Chai thủy tinh tái sử dụng không chỉ là lựa chọn cao cấp mà còn là trách nhiệm 
-            với môi trường và sức khỏe cộng đồng
+            Chai thủy tinh tái sử dụng không chỉ là lựa chọn cao cấp mà còn là
+            trách nhiệm với môi trường và sức khỏe cộng đồng
           </motion.p>
         </motion.div>
 
@@ -178,18 +185,22 @@ export function ImpactSection() {
               key={index}
               initial={{ opacity: 0, scale: 0.8, y: 40 }}
               animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 + index * 0.1, type: "spring" }}
+              transition={{
+                duration: 0.6,
+                delay: 0.1 + index * 0.1,
+                type: "spring",
+              }}
               whileHover={{ scale: 1.05, y: -10 }}
               className="relative group"
             >
               {/* Hover glow */}
               <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/40 to-blue-500/40 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-              
+
               {/* Glass card */}
               <div className="glass-card rounded-[2rem] p-8 relative overflow-hidden h-full">
                 {/* Top reflection */}
                 <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/60 to-transparent rounded-t-[2rem] pointer-events-none" />
-                
+
                 {/* Icon */}
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
@@ -200,15 +211,13 @@ export function ImpactSection() {
                     <stat.icon className="w-7 h-7 text-white relative z-10" />
                   </div>
                 </motion.div>
-                
+
                 {/* Content */}
                 <div className="text-center relative z-10">
                   <div className="text-5xl mb-3 bg-gradient-to-br from-cyan-700 to-blue-700 bg-clip-text text-transparent">
                     {stat.number}
                   </div>
-                  <div className="text-lg mb-2 text-cyan-900">
-                    {stat.label}
-                  </div>
+                  <div className="text-lg mb-2 text-cyan-900">{stat.label}</div>
                   <div className="text-sm text-cyan-700">
                     {stat.description}
                   </div>
@@ -231,22 +240,22 @@ export function ImpactSection() {
             >
               {/* Hover glow */}
               <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-              
+
               {/* Glass card */}
               <div className="glass-card rounded-[2rem] p-8 relative overflow-hidden h-full">
                 {/* Top reflection */}
                 <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/60 to-transparent rounded-t-[2rem] pointer-events-none" />
-                
+
                 {/* Shimmer */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
                   animate={{ x: ["0%", "200%"] }}
                   transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                 />
-                
+
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <motion.div 
+                  <motion.div
                     className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl relative overflow-hidden"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
@@ -254,7 +263,7 @@ export function ImpactSection() {
                     <benefit.icon className="w-8 h-8 text-white relative z-10" />
                   </motion.div>
                 </div>
-                
+
                 {/* Content */}
                 <h3 className="text-2xl mb-4 relative z-10 text-cyan-950">
                   {benefit.title}

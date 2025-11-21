@@ -2,33 +2,31 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Globe, Mail, Phone, Linkedin } from "lucide-react";
+import oceanBlueSurface from "@/assets/ocean-blue-water-surface.jpg";
 
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  
+
   // Parallax scrolling for background
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
   return (
-    <section 
-      id="contact" 
-      ref={ref} 
+    <section
+      id="contact"
+      ref={ref}
       className="py-32 relative overflow-hidden bg-gradient-to-br from-cyan-950 via-blue-950 to-blue-900"
     >
       {/* Ocean water surface background with parallax */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: bgY }}
-      >
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <div className="absolute inset-0 opacity-30">
-          <img 
-            src="https://images.unsplash.com/photo-1724069441798-1472edc67d22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMGJsdWUlMjB3YXRlciUyMHN1cmZhY2V8ZW58MXx8fHwxNzYzNjk1ODI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          <img
+            src={oceanBlueSurface}
             alt="Ocean water surface"
             className="w-full h-[120%] object-cover"
           />
@@ -39,7 +37,7 @@ export function ContactSection() {
       {/* Floating liquid glass blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, 120, 0],
             y: [0, -90, 0],
             scale: [1, 1.4, 1],
@@ -48,7 +46,7 @@ export function ContactSection() {
           className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-[140px]"
         />
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, -100, 0],
             y: [0, 100, 0],
             scale: [1, 1.5, 1],
@@ -80,7 +78,7 @@ export function ContactSection() {
           />
         ))}
       </div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         {/* Header */}
         <motion.div
@@ -96,16 +94,18 @@ export function ContactSection() {
             className="inline-flex items-center gap-3 glass-button px-8 py-4 rounded-full mb-10 text-cyan-100"
           >
             <Mail className="w-5 h-5" />
-            <span className="text-sm tracking-[0.3em] uppercase">Contact Us</span>
+            <span className="text-sm tracking-[0.3em] uppercase">
+              Contact Us
+            </span>
           </motion.div>
-          
+
           <h2 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-white">
             Liên hệ <br />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
               với chúng tôi
             </span>
           </h2>
-          
+
           <p className="text-xl text-cyan-100/90">
             Hãy để AVARIS đồng hành cùng thương hiệu của bạn
           </p>
@@ -131,19 +131,19 @@ export function ContactSection() {
           >
             {/* Hover glow */}
             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-            
+
             {/* Glass card */}
             <div className="glass-dark rounded-3xl p-8 border border-white/10 relative overflow-hidden">
               {/* Top reflection */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl pointer-events-none" />
-              
+
               {/* Shimmer on hover */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent -translate-x-full opacity-0 group-hover:opacity-100"
                 animate={{ x: ["0%", "200%"] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
               />
-              
+
               <div className="flex items-center gap-5 relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
@@ -168,19 +168,19 @@ export function ContactSection() {
           >
             {/* Hover glow */}
             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-            
+
             {/* Glass card */}
             <div className="glass-dark rounded-3xl p-8 border border-white/10 relative overflow-hidden">
               {/* Top reflection */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl pointer-events-none" />
-              
+
               {/* Shimmer on hover */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent -translate-x-full opacity-0 group-hover:opacity-100"
                 animate={{ x: ["0%", "200%"] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
               />
-              
+
               <div className="flex items-center gap-5 relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
@@ -205,19 +205,19 @@ export function ContactSection() {
           >
             {/* Hover glow */}
             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-            
+
             {/* Glass card */}
             <div className="glass-dark rounded-3xl p-8 border border-white/10 relative overflow-hidden">
               {/* Top reflection */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl pointer-events-none" />
-              
+
               {/* Shimmer on hover */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent -translate-x-full opacity-0 group-hover:opacity-100"
                 animate={{ x: ["0%", "200%"] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
               />
-              
+
               <div className="flex items-center gap-5 relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />
@@ -244,19 +244,19 @@ export function ContactSection() {
           >
             {/* Hover glow */}
             <div className="absolute -inset-1 bg-gradient-to-br from-cyan-400/30 to-blue-500/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-            
+
             {/* Glass card */}
             <div className="glass-dark rounded-3xl p-8 border border-white/10 relative overflow-hidden">
               {/* Top reflection */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl pointer-events-none" />
-              
+
               {/* Shimmer on hover */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent -translate-x-full opacity-0 group-hover:opacity-100"
                 animate={{ x: ["0%", "200%"] }}
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
               />
-              
+
               <div className="flex items-center gap-5 relative z-10">
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent" />

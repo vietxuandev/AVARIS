@@ -1,67 +1,72 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-import { Droplet, Filter, Package, CheckCircle2, Truck, RotateCcw } from "lucide-react";
+import {
+  Droplet,
+  Filter,
+  Package,
+  CheckCircle2,
+  Truck,
+  RotateCcw,
+} from "lucide-react";
+import underwaterLightRays from "@/assets/underwater-light-rays.jpg";
 
 const processSteps = [
   {
     icon: Droplet,
     title: "Nguồn nước",
-    description: "Lựa chọn nguồn nước sạch, đạt tiêu chuẩn"
+    description: "Lựa chọn nguồn nước sạch, đạt tiêu chuẩn",
   },
   {
     icon: Filter,
     title: "Lọc & Xử lý",
-    description: "Quy trình lọc hiện đại, ISO 9001 & HACCP"
+    description: "Quy trình lọc hiện đại, ISO 9001 & HACCP",
   },
   {
     icon: Package,
     title: "Đóng chai",
-    description: "Đóng chai tự động trong môi trường vô trùng"
+    description: "Đóng chai tự động trong môi trường vô trùng",
   },
   {
     icon: CheckCircle2,
     title: "Kiểm tra",
-    description: "Kiểm soát chất lượng nghiêm ngặt"
+    description: "Kiểm soát chất lượng nghiêm ngặt",
   },
   {
     icon: Truck,
     title: "Vận chuyển",
-    description: "Giao hàng đến tận nơi, đúng hẹn"
+    description: "Giao hàng đến tận nơi, đúng hẹn",
   },
   {
     icon: RotateCcw,
     title: "Thu hồi",
-    description: "Thu hồi chai rỗng để tái sử dụng"
-  }
+    description: "Thu hồi chai rỗng để tái sử dụng",
+  },
 ];
 
 export function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  
+
   // Parallax scrolling
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   return (
-    <section 
-      ref={ref} 
+    <section
+      ref={ref}
       id="process"
       className="py-32 relative overflow-hidden bg-gradient-to-br from-blue-950 via-cyan-950 to-blue-900"
     >
       {/* Underwater light rays background with parallax */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: bgY }}
-      >
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <div className="absolute inset-0 opacity-25">
-          <img 
-            src="https://images.unsplash.com/photo-1702598097794-13a854dc9951?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bmRlcndhdGVyJTIwbGlnaHQlMjByYXlzfGVufDF8fHx8MTc2MzY5NTgyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          <img
+            src={underwaterLightRays}
             alt="Underwater light rays"
             className="w-full h-[120%] object-cover"
           />
@@ -72,7 +77,7 @@ export function ProcessSection() {
       {/* Floating liquid glass blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, 90, 0],
             y: [0, -70, 0],
             scale: [1, 1.3, 1],
@@ -81,7 +86,7 @@ export function ProcessSection() {
           className="absolute top-10 right-1/3 w-[500px] h-[500px] bg-gradient-to-br from-cyan-400/15 to-blue-500/15 rounded-full blur-[120px]"
         />
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, -80, 0],
             y: [0, 90, 0],
             scale: [1, 1.4, 1],
@@ -129,16 +134,18 @@ export function ProcessSection() {
             className="inline-flex items-center gap-3 glass-button px-8 py-4 rounded-full mb-10 text-cyan-100"
           >
             <Droplet className="w-5 h-5" />
-            <span className="text-sm tracking-[0.3em] uppercase">Our Process</span>
+            <span className="text-sm tracking-[0.3em] uppercase">
+              Our Process
+            </span>
           </motion.div>
-          
+
           <h2 className="text-5xl md:text-6xl lg:text-7xl mb-8 text-white">
             Quy trình sản xuất <br />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
               & vận hành bền vững
             </span>
           </h2>
-          
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
@@ -161,7 +168,8 @@ export function ProcessSection() {
                 transition={{ duration: 2, delay: 0.5 }}
                 className="h-full origin-left relative overflow-hidden"
                 style={{
-                  background: 'linear-gradient(90deg, rgba(34,211,238,0.3) 0%, rgba(6,182,212,0.8) 50%, rgba(34,211,238,0.3) 100%)'
+                  background:
+                    "linear-gradient(90deg, rgba(34,211,238,0.3) 0%, rgba(6,182,212,0.8) 50%, rgba(34,211,238,0.3) 100%)",
                 }}
               >
                 {/* Flowing animation */}
@@ -191,7 +199,11 @@ export function ProcessSection() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.15, type: "spring" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.8 + index * 0.15,
+                    type: "spring",
+                  }}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="relative mb-6"
                 >
@@ -201,7 +213,10 @@ export function ProcessSection() {
                     <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center relative overflow-hidden">
                       {/* Top reflection */}
                       <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/30 to-transparent rounded-t-full" />
-                      <step.icon className="w-12 h-12 text-white relative z-10" strokeWidth={2} />
+                      <step.icon
+                        className="w-12 h-12 text-white relative z-10"
+                        strokeWidth={2}
+                      />
                     </div>
                   </div>
                 </motion.div>
@@ -213,9 +228,7 @@ export function ProcessSection() {
                   transition={{ duration: 0.6, delay: 1 + index * 0.15 }}
                   className="text-center"
                 >
-                  <h3 className="text-lg mb-2 text-white">
-                    {step.title}
-                  </h3>
+                  <h3 className="text-lg mb-2 text-white">{step.title}</h3>
                   <p className="text-sm leading-relaxed text-cyan-100/80">
                     {step.description}
                   </p>
@@ -235,12 +248,12 @@ export function ProcessSection() {
           <div className="relative">
             {/* Outer glow */}
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-cyan-400/20 rounded-[3rem] blur-3xl" />
-            
+
             {/* Glass card */}
             <div className="glass-dark rounded-[3rem] p-12 md:p-16 relative overflow-hidden border border-white/10">
               {/* Top reflection */}
               <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent rounded-t-[3rem] pointer-events-none" />
-              
+
               <div className="relative z-10 text-center">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -250,15 +263,15 @@ export function ProcessSection() {
                 >
                   <CheckCircle2 className="w-10 h-10 text-cyan-300" />
                 </motion.div>
-                
+
                 <h4 className="text-3xl md:text-4xl mb-6 text-white">
                   Chứng nhận chất lượng quốc tế
                 </h4>
-                
+
                 <p className="text-lg mb-10 max-w-2xl mx-auto text-cyan-100/80">
                   Được công nhận bởi các tổ chức chứng nhận hàng đầu thế giới
                 </p>
-                
+
                 <div className="flex flex-wrap justify-center gap-6 items-center">
                   {[
                     { name: "ISO 9001", desc: "Quản lý chất lượng" },
@@ -268,7 +281,11 @@ export function ProcessSection() {
                       key={i}
                       initial={{ opacity: 0, scale: 0 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 2.2 + i * 0.1, type: "spring" }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 2.2 + i * 0.1,
+                        type: "spring",
+                      }}
                       whileHover={{ scale: 1.1, y: -5 }}
                       className="glass-button rounded-2xl px-10 py-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/10"
                     >
