@@ -4,12 +4,24 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Button } from "./ui/button";
 import heroBg from "@/assets/hero.png";
 import Image from "next/image";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 
 // Move array outside component to prevent recreation
 const LIGHT_RAYS = Array.from({ length: 5 }, (_, i) => i);
 
 export function HeroSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const scrollToContact = useCallback(() => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   }, []);
@@ -28,7 +40,7 @@ export function HeroSection() {
   );
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section id="hero" className="relative h-screen w-full overflow-hidden">
       {/* SVG Filters for Water Effects */}
       <svg className="absolute w-0 h-0">
         <defs>
@@ -122,24 +134,30 @@ export function HeroSection() {
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <div
           className="absolute inset-0"
-          style={{ filter: "url(#waterFilter)" }}
+          style={{ filter: isMobile ? "none" : "url(#waterFilter)" }}
         >
           <Image
             src={heroBg}
             alt="AVARIS bottle floating on water"
             className="w-full h-full object-cover"
+            quality={75}
+            priority={true}
+            placeholder="blur"
+            sizes="100vw"
           />
           {/* Overlay gradient for better text readability */}
           <div className="absolute inset-0 bg-linear-to-br from-cyan-900/30 via-blue-900/20 to-blue-900/40" />
         </div>
 
-        {/* Animated Caustics Overlay */}
-        <div
-          className="absolute inset-0 opacity-40 mix-blend-screen"
-          style={{ filter: "url(#caustics)" }}
-        >
-          <div className="absolute inset-0 bg-linear-to-br from-cyan-300/30 via-blue-400/20 to-transparent" />
-        </div>
+        {/* Animated Caustics Overlay - Disabled on mobile for performance */}
+        {!isMobile && (
+          <div
+            className="absolute inset-0 opacity-40 mix-blend-screen"
+            style={{ filter: "url(#caustics)" }}
+          >
+            <div className="absolute inset-0 bg-linear-to-br from-cyan-300/30 via-blue-400/20 to-transparent" />
+          </div>
+        )}
 
         {/* Animated light rays through water */}
         <motion.div

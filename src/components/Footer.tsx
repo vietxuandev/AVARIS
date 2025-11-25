@@ -27,6 +27,8 @@ export function Footer() {
                   src={logo}
                   alt="AVARIS Logo"
                   className="h-14 w-auto drop-shadow-lg"
+                  quality={90}
+                  sizes="(max-width: 768px) 100px, 150px"
                 />
               </div>
               <p className="text-cyan-100/80 leading-relaxed">

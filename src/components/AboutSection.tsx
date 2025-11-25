@@ -69,6 +69,9 @@ export function AboutSection() {
             src={oceanWavesUnderwater}
             alt="Underwater waves"
             className="w-full h-[120%] object-cover"
+            quality={70}
+            sizes="100vw"
+            placeholder="blur"
           />
         </div>
         <div className="absolute inset-0 bg-linear-to-b from-cyan-950/60 via-blue-950/80 to-blue-900/60" />

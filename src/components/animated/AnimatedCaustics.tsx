@@ -1,34 +1,23 @@
-"use client";
-
-import { motion } from "motion/react";
-
 // Animated caustics lines for water effect
 const CAUSTIC_LINES = Array.from({ length: 8 }, (_, i) => i);
 
 /**
- * Client component for animated water caustics effect
- * Separated from server components for better SEO
+ * Optimized CSS-based water caustics effect
+ * Uses GPU-accelerated CSS animations instead of JavaScript
+ * Server component compatible - no "use client" needed
  */
 export function AnimatedCaustics({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
       {CAUSTIC_LINES.map((i) => (
-        <motion.div
+        <div
           key={i}
-          className="absolute w-1 h-full bg-linear-to-b from-transparent via-cyan-200/30 to-transparent"
+          className="absolute w-1 h-full bg-linear-to-b from-transparent via-cyan-200/30 to-transparent animate-caustic"
           style={{
             left: `${10 + i * 12}%`,
             transform: `rotate(${5 + i * 2}deg)`,
-          }}
-          animate={{
-            opacity: [0.1, 0.4, 0.1],
-            x: [-15, 15, -15],
-          }}
-          transition={{
-            duration: 6 + i * 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.3,
+            animation: `caustic-flow ${6 + i * 1.5}s ease-in-out infinite`,
+            animationDelay: `${i * 0.3}s`,
           }}
         />
       ))}
